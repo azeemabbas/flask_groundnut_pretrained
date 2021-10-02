@@ -5,6 +5,7 @@ import os
 secret = os.urandom(24).hex()
 
 app = Flask(__name__)
+run_with_ngrok(app)   #starts ngrok when the app is run
 app.config['SECRET_KEY'] = secret
 app.config['PLANTS_FOLDER'] = 'flask_app/static/plants'
 app.config['LEAVES_FOLDER'] = 'flask_app/static/leaves'
