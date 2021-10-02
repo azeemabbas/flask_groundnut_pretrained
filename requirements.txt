@@ -1,0 +1,5 @@
+flask-ngrok
+Flask-Login
+Flask-SQLAlchemy
+Flask-Bcrypt
+Flask-WTF
