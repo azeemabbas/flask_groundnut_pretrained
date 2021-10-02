@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1>Leaf Images </h1>
+    </div>
+    <div class="content-section">
+        	<fieldset class="form-group">
+            	<legend class="border-bottom mb-4">Total Number of Leaves Detected = {{data}}</legend>
+             <div class="form-group">
+             	<form method="POST" action="/spots">
+                    <input class="btn btn-success" id="submit" name="submit" type="submit" value="Process for Diease Detection">
+                </form>
+            </div>
+
+		
+            <div class="container">
+              <div class="row">
+                <div class="col" align="center">
+                    <img src="{{ url_for('static', filename='leaves/4_1.jpg') }}" width="96" height="96" />
+                </div>
+                <div class="col" align="center">
+                    <img src="{{ url_for('static', filename='leaves/4_2.jpg') }}" width="96" height="96" />            </div>
+              </div>
+              
+	        </div>
+        
+        
+        	</fieldset>
+      </div>
+      
+      </main><!-- /.container -->
+{% endblock content%}

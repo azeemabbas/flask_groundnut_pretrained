@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+{% block content %}
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1>Home</h1>
+        <p class="lead">You can use this app to detect ground nut disease.</p>
+      </div>
+      <div class="container">
+          <div class="row">
+            <div class="col" align="center">
+              	<a href="{{url_for('upload')}}"><img src="{{ url_for('static', filename='images/icons/upload.png') }}" width="96" height="96" /><br />
+                Upload Images</a>
+            </div>
+            <div class="col" align="center">
+              <a href="{{url_for('stat')}}"><img src="{{ url_for('static', filename='images/icons/stat.png') }}" width="92" height="92" /><br /></a>
+                Statistics
+            </div>
+          </div>
+    </div>
+      </main><!-- /.container -->
+{% endblock content%}

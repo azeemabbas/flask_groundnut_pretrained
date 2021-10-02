@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+{% block content %}
+    <main role="main" class="container">
+      <style>
+        #myProgress {
+          width: 100%;
+          background-color: #ddd;
+          display: none;
+        }
+        
+        #myBar {
+          width: 1%;
+          height: 30px;
+          background-color: #4CAF50;
+        }
+        </style>
+
+
+      <div class="starter-template">
+        <h4 style="color: green;">Upload Image</h4>
+        <p class="lead">You can upload images of plants here.</p>
+      </div>
+      <div class="content-section1">
+    	  <form method="POST" enctype="multipart/form-data" action="">
+	      {{ form.hidden_tag() }}
+        	<fieldset class="form-group">
+            	<!--<legend class="border-bottom mb-4">Upload Images!</legend>-->
+            	<div class="form-group">
+                	{{ form.image(class="form-control form-control-lg") }}
+
+                </div>
+			</fieldset>
+             <div class="form-group" style="text-align: center;">
+                    {{ form.submit(class="btn btn-success",onclick="move()") }}
+            </div>
+            <div id="myProgress">
+              <div id="myBar"></div>
+            </div>
+            
+      </form>
+      </div>
+      </main><!-- /.container -->   
+      <script>
+        var i = 0;
+        function move() {
+          document.getElementById("myProgress").style.display="block";
+          if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var width = 1;
+            var id = setInterval(frame, 40);
+            function frame() {
+              if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+              } else {
+                width++;
+                elem.style.width = width + "%";
+              }
+            }
+          }
+        }
+        </script>
+{% endblock content %}

@@ -1,0 +1,101 @@
+{% extends "layout.html" %}
+{% block content %}
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h4 style="color: green;">Statistics</h4>
+        
+    <h6 style="color: green;">Leaves Spot Stats</h6>
+    <canvas id="spotsChart" style="max-width: 500px;"></canvas>
+
+    <br><h6 style="color: green;">Disease Severity Index</h6>
+    <canvas id="severityChart" style="max-width: 500px;"></canvas>
+
+    
+    </div>
+    <!--<h6 style="color: green;">Statistics Data</h6>
+    <div class="card">
+      
+    {% for table in tables %}
+
+            {{ table|safe }}
+    {% endfor %}
+    </div>-->
+      </main><!-- /.container -->
+
+      <!-- Charts -->
+<script>
+  var ctx = document.getElementById("spotsChart").getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: {{plants}},
+datasets: [{
+label: '# of Spots',
+data: {{spots}},
+backgroundColor: [
+'red',
+'green',
+'yellow',
+'orange',
+'blue'
+],
+borderColor: [
+'black',
+'black'
+],
+borderWidth: 1
+}]
+},
+options: {
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+  
+  </script>
+
+<script>
+  var ctx = document.getElementById("severityChart").getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: {{plants}},
+datasets: [{
+label: 'Serverity',
+data: {{serverity}},
+backgroundColor: [
+'blue',
+'green',
+'yellow',
+'orange',
+'brown'
+],
+borderColor: [
+'black',
+'black',
+'black',
+'black',
+'black'
+],
+borderWidth: 1
+}]
+},
+options: {
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+  
+  </script>
+{% endblock content%}

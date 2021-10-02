@@ -1,0 +1,1 @@
+c:\Users\Azeem\PycharmProjects\tensorflow\venv\Scripts\python run.py

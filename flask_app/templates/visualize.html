@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1>Visualized Result Images </h1>
+    </div>
+    <div class="content-section">
+        	<fieldset class="form-group">
+            	<legend class="border-bottom mb-4">Plant ({{plantImg}})</legend>
+             <div class="form-group">
+             	<img class="d-block w-100" src="{{ url_for('static', filename='plants/'~plantImg) }}" alt="Plant" width="50%" height="50%">
+            </div>
+		<legend class="border-bottom mb-4">Leaves</legend>
+		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+          <div class="carousel-inner">
+          {% for file in spotFiles %}
+          	{% if active==False %}
+            	{% active = True%}
+            <div class="carousel-item active">
+            {% elif %}
+            <div class="carousel-item">
+            {% endif %}
+              <img class="d-block w-100" src="{{ url_for('static', filename='spots/'~file) }}" alt="First slide">
+              <div class="carousel-caption d-none d-md-block">
+                <p>{{file}}</p>
+              </div>
+            </div>
+          {% endfor %}
+          
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+        
+        	</fieldset>
+      </div>
+      
+      </main><!-- /.container -->
+{% endblock content%}

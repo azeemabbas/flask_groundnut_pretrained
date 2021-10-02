@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+{% block content %}
+    <main role="main" class="container">
+
+      <div class="starter-template">
+        <h1>Plants Images </h1>
+    </div>
+    <div class="content-section">
+        	<fieldset class="form-group">
+            	<legend class="border-bottom mb-4">Total Number of Uploaded Plant Images = {{data}}</legend>
+             <div class="form-group">
+             	<form method="POST" action="/leaves">
+                    <input class="btn btn-outline-info" id="submit" name="submit" type="submit" value="Process for Leaves">
+                </form>
+            </div>
+
+		
+            <div class="container">
+              <div class="row">
+                <div class="col" align="center">
+                    <img src="{{ url_for('static', filename='plants/4.jpg') }}" width="96" height="96" />
+                </div>
+                <div class="col" align="center">
+                    <img src="{{ url_for('static', filename='plants/26.jpg') }}" width="96" height="96" />            </div>
+              </div>
+              
+	        </div>
+        
+        
+        	</fieldset>
+      </div>
+      
+      </main><!-- /.container -->
+{% endblock content%}

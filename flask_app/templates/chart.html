@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Material Design Bootstrap</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+  <!-- Bootstrap core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="css/style.css" rel="stylesheet">
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script src="{{ url_for('static', filename='dist/js/jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='assets/js/vendor/popper.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='dist/js/bootstrap.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='dist/js/mdb.min.js') }}"></script>
+
+
+</head>
+
+<body>
+
+  <!-- Start your project here-->
+  <div style="height: 100vh">
+    <div class="flex-center flex-column">
+      <h1 class="animated fadeIn mb-2">Material Design for Bootstrap</h1>
+
+      <h5 class="animated fadeIn mb-1">Thank you for using our product. We're glad you're with us.</h5>
+
+      <p class="animated fadeIn text-muted">MDB Team</p>
+      <canvas id="myChart" style="max-width: 500px;"></canvas>
+    </div>
+  </div>
+  <!-- /Start your project here-->
+  
+</div>
+<!--Card content-->
+
+
+
+
+
+
+
+
+<!-- Charts -->
+<script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+datasets: [{
+label: '# of Votes',
+data: [12, 19, 3, 5, 2, 3],
+backgroundColor: [
+'rgba(255, 99, 132, 0.2)',
+'rgba(54, 162, 235, 0.2)',
+'rgba(255, 206, 86, 0.2)',
+'rgba(75, 192, 192, 0.2)',
+'rgba(153, 102, 255, 0.2)',
+'rgba(255, 159, 64, 0.2)'
+],
+borderColor: [
+'rgba(255,99,132,1)',
+'rgba(54, 162, 235, 1)',
+'rgba(255, 206, 86, 1)',
+'rgba(75, 192, 192, 1)',
+'rgba(153, 102, 255, 1)',
+'rgba(255, 159, 64, 1)'
+],
+borderWidth: 1
+}]
+},
+options: {
+scales: {
+yAxes: [{
+ticks: {
+beginAtZero: true
+}
+}]
+}
+}
+});
+    
+    </script>
+</body>
+
+</html>

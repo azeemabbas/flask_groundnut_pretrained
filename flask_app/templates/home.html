@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+    <main role="main" class="container" style="">
+      <h4 style="color: green;">Groundnut Disease Detection</h4>
+      <div class="container">
+        <div class="row">
+          <div class="col" style="margin-left: 0px;padding:0px;">
+            <p style="text-align: justify;font-size: 14px;">This application detect and compute serverity of disease on the leaves of groundnut plants using deep learnig. Early disease detection will support timely decision that increases yeild.</p> 
+          </div>
+          <div class="col">
+            <img src="{{ url_for('static', filename='images/peanutPlant.jpg') }}" width="150" height="150" />
+          </div>
+        </div>
+      </div>
+      <h4 style="color: green;">How this work!</h4>
+      <div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item" style="background-color: transparent ;">Capture photos of groundnut plants.</li>
+            <li class="list-group-item" style="background-color: transparent ;">Upload photos to the App.</li>
+            <li class="list-group-item" style="background-color: transparent ;">The App will crop all the leaves, detect disease spots and finally computes the severity level of the disease.</li>
+            
+          </ul>
+        
+      </div>
+      <div style="text-align: center;">
+        <a class="btn btn-success" href="{{url_for('upload')}}">Upload Plant Photos</a>
+      </div>
+      <!--<div class="starter-template">
+        <h1>Home</h1>
+        <p class="lead">You can use this app to detect ground nut disease.</p>
+      </div>
+      <div class="container">
+          <div class="row">
+            <div class="col" align="center">
+              	<a href="{{url_for('upload')}}"><img src="{{ url_for('static', filename='images/icons/upload.png') }}" width="96" height="96" /><br />
+                Upload Images</a>
+            </div>
+            <div class="col" align="center">
+              <a href="{{url_for('stat')}}"><img src="{{ url_for('static', filename='images/icons/stat.png') }}" width="92" height="92" /><br /></a>
+                Statistics
+            </div>
+          </div>
+    </div>-->
+      </main><!-- /.container -->
+{% endblock content%}

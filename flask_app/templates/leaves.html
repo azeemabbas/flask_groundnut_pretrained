@@ -1,0 +1,162 @@
+{% extends "layout.html" %}
+{% block content %}
+    <main role="main" class="container">
+      <style>
+        #myProgress {
+          width: 100%;
+          background-color: #ddd;
+          display: none;
+        }
+        
+        #myBar {
+          width: 1%;
+          height: 30px;
+          background-color: #4CAF50;
+        }
+        </style>
+
+      <div class="starter-template">
+        <h4 style="color: green;">Leaves Images {{data.length}} </h4>
+    </div>
+    <div >
+        	<fieldset class="form-group">
+              <!--<legend class="border-bottom mb-4" style="font-size: 14px;">Total Number of Uploaded Plant Images = {{data}}</legend>-->
+              <div style="align-content: center;">
+                <div id="carouselExampleControls" class="carousel slide" data-ride="true" data-interval="false">
+                  <div class="carousel-inner">
+                    {% set actv = 'active' %}
+                    {% for i in range(0,plants) %}
+                    {% set str = url_for('static',filename="plants/"~ (i+1) ~ ".jpg") %}
+                    {% if i==0 %}
+                    <div class="carousel-item  active">
+                    {%else%}
+                    <div class="carousel-item">
+                    {% endif %}
+                      <img class="d-block w-100" src="{{str}}" alt="Plants Image" data-toggle="modal" data-target="#exampleModalCenter" width="100%" height="150">
+                    </div>
+                    {%endfor%}
+                    
+                  </div>
+                  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+              </div>
+
+
+              <div>
+                <ul class="list-group" id="listImages" name="listImages" style="background-color: inherit;overflow:scroll; -webkit-overflow-scrolling: touch;max-height: 293px;margin-bottom: -20px;">
+                         
+                </ul>
+              </div>
+       
+        	</fieldset>
+      </div>
+      
+      <div class="form-group" style="margin-top: 25px;">
+        <form method="POST" action="/spots">
+             <input class="btn btn-success" id="submit" name="submit" type="submit" value="Process for Disease Detection" onclick="move()">
+         </form><br />
+         <div id="myProgress">
+          <div id="myBar"></div>
+        </div>
+     </div>
+     
+     <!--- This Model display for Plant Image View-->
+     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Leaves view</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="" id="imgplant" class="responsive" width="100%"/>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      </main><!-- /.container -->
+      <!-- This script for progress Bar-->
+      <script>
+        var i = 0;
+        function move() {
+          document.getElementById("myProgress").style.display="block";
+          if (i == 0) {
+            i = 1;
+            var elem = document.getElementById("myBar");
+            var width = 1;
+            var id = setInterval(frame, 150);
+            function frame() {
+              if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+              } else {
+                width+=0.5;
+                elem.style.width = width + "%";
+              }
+            }
+          }
+        }
+        </script>
+        <script>
+          $('#exampleModalCenter').on('show.bs.modal', function (e) {
+              var button = e.relatedTarget;
+              if (button != null)
+              {
+                  //alert(button.src)
+                  $("#imgplant").attr("src", button.src);
+              }
+          })
+        </script>
+        <script>
+        $(window).on('load',function(){
+        var currentIndex = 0;
+         var plantsLeaves = {{data}};
+
+         createList(plantsLeaves, currentIndex);
+
+         $('#carouselExampleControls').on('slid.bs.carousel', function () {
+            // do something…
+            currentIndex = $('div.active').index();
+            //alert(plantsLeaves[currentIndex].length);
+            createList(plantsLeaves, currentIndex);
+          });
+        });
+
+        function createList(arr,iDx){
+          
+          var cList = $('#listImages')
+          //alert(cList);
+          $(cList).empty();
+          var deleteIcon = "{{ url_for('static', filename='images/icons/delete.png')}}";
+          var plantPath = "{{ url_for('static',filename='leaves/')}}";
+          //alert(plantPath);
+          $.each(arr[iDx], function(i)
+          {
+            
+              var li = $('<li/>')
+                  .addClass('list-group-item')
+                  .appendTo(cList);
+              var aaa = $('<a/>')
+                  .addClass('ui-all')
+                  .append('<div class="container"><div class="row"><div class="col" style="align-content: left;"><h6 style="display:inline;"><span class="label label-danger">'+(i+1)+'.&nbsp;</span></h6></div> \
+                          <div class="col" style="align-content: left;"> <img src="'+plantPath+arr[iDx][i]+'" data-toggle="modal" data-target="#exampleModalCenter" class="rounded mx-auto" valig="middle" width="48" height="48"> </div>  <div class="col" style="">&nbsp;</div> \
+                          <div class="col"> <img src="'+deleteIcon+'" width="32" height="32" style="vertical-align: middle;" />  </div>')
+                  .appendTo(li);
+          });
+        }
+
+        </script>
+{% endblock content%}
