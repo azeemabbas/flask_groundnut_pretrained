@@ -3,6 +3,8 @@ import os
 
 def leavesOfPlants():
     total_plants = len(os.listdir(app.config['PLANTS_FOLDER']))
+    if os.path.isdir(os.path.join(app.config['LEAVES_FOLDER']))==False:
+      os.mkdir(os.path.join(app.config['LEAVES_FOLDER']))
     files = []
     for k in range(0,total_plants):
         f = str(k+1)+'_'
@@ -12,6 +14,8 @@ def leavesOfPlants():
 
 def spotsOnLeaves():
     total_plants = len(os.listdir(app.config['PLANTS_FOLDER']))
+    if os.path.isdir(os.path.join(app.config['SPOTS_FOLDER']))==False:
+      os.mkdir(os.path.join(app.config['SPOTS_FOLDER']))
     files = []
     for k in range(0,total_plants):
         f = str(k+1)+'_'
