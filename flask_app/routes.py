@@ -21,11 +21,11 @@ def upload():
         #image_data = request.files[form.image.name].read()
         for file in uploaded_files:
             if '.' in file.filename and file.filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']:
-                if os.path.isdir(os.path.join(app.config['PLANTS_FOLDER']):
+                if os.path.isdir(os.path.join(app.config['PLANTS_FOLDER'])):
                 	file.save(os.path.join(app.config['PLANTS_FOLDER'], file.filename))
-		else:
-			os.mkdir(os.path.join(app.config['PLANTS_FOLDER'])
-			file.save(os.path.join(app.config['PLANTS_FOLDER'], file.filename))
+                else:
+                  os.mkdir(os.path.join(app.config['PLANTS_FOLDER']))
+                  file.save(os.path.join(app.config['PLANTS_FOLDER'], file.filename))
             else:
                 flash("File extension not allowed","danger")
                 return redirect(url_for("upload"))
